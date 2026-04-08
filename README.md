@@ -3,8 +3,11 @@
 **CogniLink** is a full-stack EEG psychopathology analysis platform. Users upload a BDF EEG file, receive AI-generated trait scores and a clinical diagnosis, then explore the raw waveform in an interactive browser-based EEG viewer.  
 
 ---
+<img width="629" height="345" alt="image" src="https://github.com/user-attachments/assets/6cb4618b-d662-4202-b7bd-463ef3d21f6c" />
 
 <img width="921" height="488" alt="image" src="https://github.com/user-attachments/assets/9ee7bc8a-2ccf-4da9-9ef0-0937abaeb488" />
+<img width="387" height="184" alt="image" src="https://github.com/user-attachments/assets/fe25e2f2-a78d-4467-8e2c-6d573c0007c9" />
+
 
 
 ## Table of Contents
