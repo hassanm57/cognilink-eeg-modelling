@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 174 80% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 35% 92%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 35% 92%;
+    --muted-foreground: 215 20% 42%;
+
+    --accent: 262 75% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 86%;
+    --input: 214 32% 86%;
+    --ring: 174 80% 38%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(174 80% 38%), hsl(262 75% 48%));
+    --gradient-card: linear-gradient(180deg, hsl(210 40% 96%), hsl(210 40% 98%));
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(174 80% 38% / 0.08), transparent 50%);
+    --glow-primary: 0 0 60px hsl(174 80% 38% / 0.15);
+    --glow-accent: 0 0 40px hsl(262 75% 48% / 0.12);
+
+    /* Neural colors */
+    --neural-cyan: 174 80% 38%;
+    --neural-purple: 262 75% 48%;
+    --neural-blue: 220 85% 48%;
+    --neural-green: 160 75% 35%;
+
+    /* Trait colors */
+    --trait-attention: 35 90% 40%;
+    --trait-externalizing: 15 90% 45%;
+    --trait-internalizing: 275 70% 48%;
+    --trait-pfactor: 335 80% 47%;
+  }
+
+  .dark {
+    --background: 224 50% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 224 45% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 224 45% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 174 80% 52%;
+    --primary-foreground: 224 50% 4%;
+
+    --secondary: 224 40% 11%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 224 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 262 80% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 224 28% 16%;
+    --input: 224 28% 16%;
+    --ring: 174 80% 52%;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(174 80% 52%), hsl(262 80% 65%));
+    --gradient-card: linear-gradient(180deg, hsl(224 45% 9%), hsl(224 50% 4%));
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(174 80% 52% / 0.12), transparent 50%);
+    --glow-primary: 0 0 60px hsl(174 80% 52% / 0.25);
+    --glow-accent: 0 0 40px hsl(262 80% 65% / 0.2);
+
+    /* Neural colors */
+    --neural-cyan: 174 80% 52%;
+    --neural-purple: 262 80% 65%;
+    --neural-blue: 220 90% 60%;
+    --neural-green: 160 84% 45%;
+
+    /* Trait colors */
+    --trait-attention: 45 95% 55%;
+    --trait-externalizing: 15 95% 55%;
+    --trait-internalizing: 280 80% 60%;
+    --trait-pfactor: 340 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Syne', system-ui, sans-serif;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
+  /* Subtler neural grid — 32px cells, very faint */
+  .neural-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Grain texture via CSS */
+  .grain {
+    position: relative;
+  }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Section label — mono uppercase micro-label */
+  .section-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  /* Rule line — fading horizontal divider */
+  .rule-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+  }
+
+  /* Stagger delay utilities */
+  .delay-0 { animation-delay: 0ms; }
+  .delay-1 { animation-delay: 100ms; }
+  .delay-2 { animation-delay: 200ms; }
+  .delay-3 { animation-delay: 300ms; }
+  .delay-4 { animation-delay: 450ms; }
+  .delay-5 { animation-delay: 600ms; }
+
+  /* Reveal-up animation class */
+  .reveal-up {
+    animation: reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+/* Animations */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+/* Legacy animation classes (kept for dashboard components that still use them) */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neural-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 0.6; transform: scale(1); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+.animate-neural-pulse { animation: neural-pulse 4s ease-in-out infinite; }
+
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-800 { animation-delay: 800ms; }
